@@ -33,6 +33,16 @@ AUTH_USER_MODEL = 'userbyemail.MyUser'
 
 # Channels
 ASGI_APPLICATION = 'lequizz.asgi.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,8 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
