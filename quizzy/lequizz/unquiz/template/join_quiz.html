@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Join Quiz</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% csrf_token %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Join Quiz</h1>    
+  </div>
+</div>
+<div class="container">
+  <div class="row" >
+    <div class="col">
+        {% if joined%}
+        <p class="text-warning">You are already joined. <a href="quiz">Go to Quiz</a></p>
+        {% endif%}
+      <form method="post" action="." class="form-group">
+          {% csrf_token %}
+        <label for="quizcode">Quiz Code</label>
+        <input type="text" class="form-control" name="quizcode" aria-describedby="Quiz" placeholder="Enter Quiz Code">
+        <small id="emailHelp" class="form-text text-muted">This is the quiz code you received from your Organizer.</small>
+        <label for="username_name">Nick Name</label>
+        <input type="text" class="form-control" name="username" aria-describedby="Quiz" placeholder="Nick Name">
+        <small id="emailHelp" class="form-text text-muted">Your favourite nick name for this quiz.</small>
+
+        <button type="submit" class="btn btn-outline-primary">Enter</button>
+    </form>
+</div>
+</div>
+</body>
+</html>

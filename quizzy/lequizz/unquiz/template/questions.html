@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quiz Starts</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% csrf_token %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">{{question}}</h1>    
+  </div>
+</div>
+
+<div class="container" class="container-md">
+<img src="https://images.news18.com/ibnlive/uploads/2020/12/1607657713_sports-1.png?impolicy=website&width=534&height=356" 
+alt="" class="rounded mx-auto d-block">
+</div>
+<div class="container">
+
+  {% for a in choices %}
+  <div class="row mx-md-n5" >
+    <div class="col px-md-5">
+      <form method="post" action="/qz/submit">
+      <input type="hidden" name="qid" value={{a.question}}>
+      <input type="hidden" name="choice" value={{a.id}}>
+      <button type="submit" class="btn btn-outline-primary btn-block">{{a.choice_text}}</button>
+    </form>
+  </div>
+  </div>
+  {% endfor %}
+     
+</div>
+
+</body>
+</html>
